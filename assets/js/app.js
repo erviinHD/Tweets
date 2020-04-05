@@ -56,7 +56,7 @@ function deleteTweet(e) {
 
     if (e.target.className === 'borrar-tweet') {
         e.target.parentElement.remove();
-        alert('Tweet eliminado')
+        removeTweetLocalStorage(e.target.parentElement.innerText);
     }
 }
 
@@ -103,9 +103,24 @@ function localStorageListo() {
 
         //Agregamos el tweet a la lista
         tweetList.appendChild(li);
-
-        //Agregar tweet a LocalStorage
-        addTweetLocalStorage(tweet);
     });
 
+}
+
+
+// Eliminar tweet LS
+
+function removeTweetLocalStorage(tweet) {
+
+    let tweets, tweetCortado;
+
+    //Eliminar X del tweet
+    tweetCortado = tweet.substring(0, tweet.length - 1);
+    tweets = getTweetLocalStorage();
+    tweets.forEach(function (tweet, index) {
+        if (tweetCortado === tweet) {
+            tweets.splice(index, 1);
+        }
+    });
+    localStorage.setItem('tweets', JSON.stringify(tweets));
 }
