@@ -12,6 +12,9 @@ function eventListener() {
 //Cuando se envia al Formulario
 document.querySelector('#formulario').addEventListener('submit', addTweet);
 
+// Borrar Tweet 
+tweetList.addEventListener('click', deleteTweet);
+
 //Funciones
 
 //Añadir tweet al formulario
@@ -20,7 +23,6 @@ function addTweet(e) {
 
     // leer el valor del textarea
     const tweet = document.getElementById('tweet').value;
-    console.log(tweet);
 
     // Crear boton eliminar
     const botonBorrar = document.createElement('a');
@@ -35,5 +37,22 @@ function addTweet(e) {
 
     //Agregamos el tweet a la lista
     tweetList.appendChild(li);
+
+}
+
+
+function deleteTweet(e) {
+    e.preventDefault();
+    // comparamos que seleccione el texto  (X) 
+    
+    if (e.target.className === 'borrar-tweet') {
+        e.target.parentElement.remove();
+        alert('Tweet eliminado')
+    } else {
+        console.log('una lista');
+
+
+    }
+
 
 }
